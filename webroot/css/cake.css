@@ -523,3 +523,8 @@ table td {
     vertical-align: top;
     word-break: break-all;
 }
+
+.table {
+    width: 900px;
+    padding: 100px;
+}

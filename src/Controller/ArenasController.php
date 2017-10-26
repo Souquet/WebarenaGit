@@ -35,7 +35,7 @@ class ArenasController  extends AppController{
     }
     
     public function login(){
-        
+        $this->set('mdp', "");
         if($this->request->is('post')){
             
             $data = $this->request->getData();
@@ -62,8 +62,8 @@ class ArenasController  extends AppController{
                 $email = $data['email'];
                 $e=$this->Players->check_Players($data);
                 if($e['email'] == $email){
-                    $mdp=$e['password'];
-                    pr($mdp);
+                    $this->Players->change_Password($e['id'],$data['password']);
+                    $this->set('mdp','Votre nouveau mot de passe est '.$data['password']);
                 }
             }
         }

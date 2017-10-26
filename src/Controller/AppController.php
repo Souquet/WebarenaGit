@@ -27,42 +27,40 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-
-    /**
-     * Initialization hook method.
-     *
-     * Use this method to add common initialization code like loading components.
-     *
-     * e.g. `$this->loadComponent('Security');`
-     *
-     * @return void
-     */
-    public function initialize()
+   public function initialize()
     {
-        parent::initialize();
-
-        $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-
-        /*
-         * Enable the following components for recommended CakePHP security settings.
-         * see https://book.cakephp.org/3.0/en/controllers/components/security.html
-         */
-        //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
+        $this->loadComponent('Auth', [
+            'loginAction' => [
+                'controller' => 'Arenas',
+                'action' => 'login'
+            ],
+            'loginRedirect' => [
+                'controller' => 'Arenas',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Arenas',
+                'action' => 'login',
+                'home'
+            ],
+            'authenticate' => [
+                'Form' => [
+                    'userModel' => 'Players',
+                    'fields' => ['username' => 'email', 'password' => 'password']
+                ]
+            ],
+            'storage' => 'Session'
+        ]);
     }
 
-    /**
-     * Before render callback.
-     *
-     * @param \Cake\Event\Event $event The beforeRender event.
-     * @return \Cake\Http\Response|null|void
-     */
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['login', 'logout']);
+    }
+    
     public function beforeRender(Event $event)
     {
-        // Note: These defaults are just to get started quickly with development
-        // and should not be used in production. You should instead set "_serialize"
-        // in each action as required.
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {

@@ -1,54 +1,77 @@
 <?php
-
 namespace App\Controller;
-
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
+use Cake\ORM\Table;
+use Cake\Utility\Hash;
+use \Cake\Network\Exception;
+use Cake\Event\Event;
+use Cake\Utility\Text;
 /**
- * Personal Controller
- * User personal interface
- *
- */
-class ArenasController extends AppController {
-
-    public function index() {
-        $this->set('myname', "Roberto Duarte");
-
-        $this->loadModel('Fighters');
-
-        $v = $this->Fighters->test();
-        $this->set('test', $v);
-        $figterlist = $this->Fighters->getBestFighter();
-        pr($figterlist->toArray());
-    }
-
-    public function login() {
+* Personal Controller
+* User personal interface
+*
+*/
+class ArenasController  extends AppController{
+    public function index(){
         
     }
-
+    
     public function fighter() {
         $this->loadModel('Fighters');
         if ($this->request->is('post')) {
             $data = $this->request->getData();
-            pr($data);
             $new_fighter_name = $data['name'];
-            pr($this->Fighters->addFighter($new_fighter_name));
+            $this->Fighters->addFighter($new_fighter_name);
         }
     }
-
-    /*    public function new_fighter() {
-      $this->loadModel('Fighters');
-      pr($new_fighter_name = $this->request->getData());
-
-
-      } */
-
-    public function sight() {
-        
+    
+    public function sight(){
+       
     }
-
-    public function diary() {
-        
+    
+    public function diary(){
+       
     }
-
+    
+    public function login(){
+        
+        if($this->request->is('post')){
+            
+            $data = $this->request->getData();
+            $this->loadModel('Players');
+                
+            if($data['processing'] == 'register'){
+                $new_user_email = $data['email'];
+                $new_user_password = $data['password'];
+                $e=$this->Players->check_Players($data);
+                if($e['email']!=$new_user_email){
+                    $this->Players->add_Players($new_user_email,$new_user_password);
+                }else{
+                    $this->set(pr('Connectez-vous!'));
+                }
+            }elseif($data['processing'] == 'login'){
+                $player = $this->Auth->identify();
+                    if ($player){
+                        $this->Auth->setUser($player);
+                        return $this->redirect($this->Auth->redirectUrl());
+                    }
+                $this->Flash->error(__('Invalid username or password, try again'));
+                
+            }elseif($data['processing'] == 'recover'){
+                $email = $data['email'];
+                $e=$this->Players->check_Players($data);
+                if($e['email'] == $email){
+                    $mdp=$e['password'];
+                    pr($mdp);
+                }
+            }
+        }
+    }
+    
+    public function logout(){
+        $this->Flash->success('Vous avez été déconnecté.');
+        return $this->redirect($this->Auth->logout());
+    }
 }
+    

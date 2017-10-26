@@ -1,3 +1,3 @@
 <?php $this->assign('title', 'Index');?>
-Bienvenue <?php echo $myname;?> dans webarenas...
-<?php echo $test;?> 
+
+Bienvenu dans WebArena

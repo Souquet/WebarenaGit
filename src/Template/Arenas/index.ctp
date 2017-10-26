@@ -1,1 +1,3 @@
-Bienvenu <?php echo $myname;?> dans WebArena, bibiche maggle out
+<?php $this->assign('title', 'Index');?>
+Bienvenue <?php echo $myname;?> dans webarenas...
+<?php echo $test;?> 

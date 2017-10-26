@@ -1,1 +1,1 @@
-Bonjour login
+<?php $this->assign('title', 'Login');?>

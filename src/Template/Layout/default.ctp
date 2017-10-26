@@ -34,6 +34,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
+    <header>
+        <?php echo $this->Html->link('Index', array('controller' => 'Arenas', 'action' => '/')); ?>
+        <?php echo $this->Html->link('Fighter', array('controller' => 'Arenas', 'action' => 'fighter')); ?>
+        <?php echo $this->Html->link('Diary', array('controller' => 'Arenas', 'action' => 'diary')); ?>
+        <?php echo $this->Html->link('Login', array('controller' => 'Arenas', 'action' => 'login')); ?>
+        <?php echo $this->Html->link('Sight', array('controller' => 'Arenas', 'action' => 'sight')); ?>
+    </header>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
@@ -51,7 +58,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
+    <footer class="top-bar expanded">
+        GIRARD - SOUQUET - PETRIGNET - DUARTE
     </footer>
 </body>
 </html>

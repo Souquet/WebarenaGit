@@ -1,17 +1,17 @@
 
 body{
     
-    background-color:dimgray;
+    background-color:#DCDCDC;
     text-align: center;
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
 }
 
 
 .cadre{
     width: 900px;
-    border-bottom-color:black;
-    margin-top: 50px;
+    height: 400px;
+    margin-top: 10px;
     text-align: center;
     display: inline-block;
     margin-left: auto;
@@ -32,4 +32,42 @@ body{
      margin: 0px;
     padding: 0px;
     
+}
+
+.ControlsArea{
+    width: 900px;
+    border: 2px;
+    border-color: #515151;
+    border-style: solid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}
+
+.Actions{
+    display: inline-block;
+    margin: auto;
+    width: 380px;
+    margin: auto;
+    margin-right: 5px;
+}
+
+.Directions{
+    display: inline-block;
+    width: 500px;
+    margin: auto;
+    
+}
+
+.TouchesDir{
+    display: inline-block;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.0);
+    border-style: hidden;
+}
+
+.btnActions{
+    list-style: none;
 }

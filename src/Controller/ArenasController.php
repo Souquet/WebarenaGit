@@ -57,7 +57,9 @@ class ArenasController  extends AppController{
     }
     
     public function login(){
-        $this->set('mdp', "");
+        $this->set('mdp', '');
+        $this->set('alert','');
+        $this->set('invalid','');
         if($this->request->is('post')){
             
             $data = $this->request->getData();
@@ -70,7 +72,7 @@ class ArenasController  extends AppController{
                 if($e['email']!=$new_user_email){
                     $this->Players->add_Players($new_user_email,$new_user_password);
                 }else{
-                    $this->set(pr('Connectez-vous!'));
+                    $this->set('alert','Cette Email est déjà utilisé, connectez-vous !');
                 }
             }elseif($data['processing'] == 'login'){
                 $player = $this->Auth->identify();
@@ -78,7 +80,7 @@ class ArenasController  extends AppController{
                         $this->Auth->setUser($player);
                         return $this->redirect($this->Auth->redirectUrl());
                     }
-                $this->Flash->error(__('Invalid username or password, try again'));
+                $this->set('invalid','Email ou mot de passe incorrect !');
                 
             }elseif($data['processing'] == 'recover'){
                 $email = $data['email'];

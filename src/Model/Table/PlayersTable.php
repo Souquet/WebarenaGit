@@ -23,4 +23,10 @@ class PlayersTable extends Table{
             return $a;
         }
     }
+    
+    public function change_Password($id,$newPass){
+        $a=$this->get($id);
+        $a->password=$newPass;
+        $this->save($a);
+    }
 }

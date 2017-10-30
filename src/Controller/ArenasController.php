@@ -17,12 +17,51 @@ class ArenasController  extends AppController{
         
     }
     
-    public function fighter() {
+    public function creating(){
+        $this->set('fail','');
         $this->loadModel('Fighters');
+        $id = $this->Auth->user('id');
         if ($this->request->is('post')) {
             $data = $this->request->getData();
-            $new_fighter_name = $data['name'];
-            $this->Fighters->addFighter($new_fighter_name);
+            $new_fighter_name = $data['new_name'];
+            $new_avatar_img = $data['avatar'];
+            if (($new_fighter_name != '')&&($new_avatar_img == 1 || $new_avatar_img == 2)){
+                $this->Fighters->addFighter($new_fighter_name,$id);
+                return $this->redirect('/Arenas/fighter');
+            }else{
+                $fail='nom incorrect';
+                $this->set('fail',$fail);
+            }
+        }
+    }
+    
+    public function fighter() {
+        $this->loadModel('Fighters');
+        $id = $this->Auth->user('id');
+        $bool = $this->Fighters->find("all")
+                    ->where(['player_id'=>$id])
+                    ->count();
+        $this->set('create',$bool);
+        $fighter = $this->Fighters->find("all")
+                    ->where(['player_id'=>$id])
+                    ->order(["level" => "DESC"])
+                    ->first();
+        $this->set('player_fighter',$fighter);
+        
+        $fighter_array=$this->Fighters->getPlayerFighter($id);
+        $this->set('player_fighter',$fighter_array);
+        if ($this->request->is('post')) {
+            $data = $this->request->getData();
+            if($data['lvl_up_type']=='hp'){
+                $this->levelUp($fighter['id'],3);
+            }
+            if($data['lvl_up_type']=='force'){
+                $this->Fighters->levelUp($fighter['id'],2);
+            }
+            if($data['lvl_up_type']=='sight'){
+                $this->Fighters->levelUp($fighter['id'],1);
+            }
+            return $this->redirect('/Arenas/fighter');
         }
     }
     

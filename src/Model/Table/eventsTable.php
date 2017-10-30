@@ -4,9 +4,9 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\I18n\Time;
 
-class EventsTable extends Table
+class eventsTable extends Table
 {
-    public function move($dir, $id){
+    /*public function move($dir, $id){
         $new = $this->newEntity();
         $new['name'] = $id['name'] . ' moves ' . $dir;
         $new['coordinate_x'] = $id['coordinate_x'];
@@ -42,10 +42,14 @@ class EventsTable extends Table
         $new['date'] = time();
         $this->save($new);
     }
+    */
     
     public function getevents(){
         $now = Time::now();
-        $all = $this->find('all', array('conditions' => array('date >' => $now->modify('-24 hours'))));
+        $all = $this->find('all', [
+            'order'=> ['events.date' =>'ASC']
+        ]);
         return $all;
+        
     }   
 }

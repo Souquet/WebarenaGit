@@ -5,8 +5,15 @@
         <group>
             <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/src/Controller/ArenasController.php</file>
             <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/src/Controller/AppController.php</file>
+            <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/src/Template/Arenas/sight.ctp</file>
             <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/index.php</file>
+            <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/src/Template/Arenas/fighter.ctp</file>
+            <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/src/Template/Arenas/index.ctp</file>
             <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/config/app.php</file>
+            <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/src/Template/Arenas/diary.ctp</file>
+            <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/src/Template/Arenas/login.ctp</file>
+            <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/.github/ISSUE_TEMPLATE.md</file>
+            <file>file:/Users/qsouquet/Desktop/projethtml/projet_PHP1/.github/PULL_REQUEST_TEMPLATE.md</file>
         </group>
     </open-files>
 </project-private>

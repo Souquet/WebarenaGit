@@ -64,7 +64,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '541fb05c2ede3720cf0f1c6e20f85b37a32c802d6483162dfff8a28b551bc66e'),
+        'salt' => env('SECURITY_SALT', '43e377f42f3d3c8b41b0976630e7b9216233addddc3bfda1dec6c2ed29c52662'),
     ],
 
     /**
@@ -230,8 +230,8 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'root',
-            'password' => '',
-            'database' => 'proj',
+            'password' => 'root',
+            'database' => 'webarena',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],

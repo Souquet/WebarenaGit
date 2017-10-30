@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
@@ -91,9 +92,14 @@ class ArenasController  extends AppController{
        
     }
     
-    public function diary(){
-       
-    }
+    public function diary()
+{
+        //if ($this->request->session()->check('playerId')==NULL) //{$this->redirect(['events' => 'login']);}
+        
+        $this->loadModel('events');
+        
+        $this->set('events', $this->events->getevents());
+}
     
     public function login(){
         $this->set('mdp', '');

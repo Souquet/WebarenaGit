@@ -1,3 +1,4 @@
+
 <html>
     <?php $this->assign('title', 'Fighter');?>
     
@@ -57,3 +58,4 @@
     
     </body>
 </html>
+

@@ -1,3 +1,4 @@
+
 <?php $this->assign('title', 'Index');?>
 
 <!DOCTYPE html>
@@ -36,3 +37,4 @@
     </section>
 </body>
 </html>
+

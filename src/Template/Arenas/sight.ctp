@@ -9,17 +9,22 @@
                 $lignes = 1;
                 $colonnes = 1;
                 
-                while($colonnes <= 10){
+                while($lignes <= 10){
                 echo '<tr class="Tcolonne">';
-                    while($lignes <= 15){
+                    while($colonnes <= 15){
                         echo '<td class="Tligne">';
-                        echo $this->Html->image('herbe.png');
+                        if(($colonnes== 6)&&($lignes== 2)) { //conditions coordonnées ici
+                            echo $this->Html->image('mur.png'); 
+                        }
+                        else{
+                            echo $this->Html->image('herbe.png');
+                        }
                         echo '</td>';
-                        $lignes++;
+                        $colonnes++;
                 }
                 echo '</tr>';
-                $lignes =1;
-                $colonnes++;
+                $colonnes =1;
+                $lignes++;
             }
             ?>
         </table>

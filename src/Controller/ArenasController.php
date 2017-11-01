@@ -67,29 +67,28 @@ class ArenasController  extends AppController{
     }
     
     public function sight(){
-        if ($this->request->is('post')){
+       if ($this->request->is('post')){
            // déclaration variables
            $data = $this->request->getData();
            $this->LoadModel('Fighters');
            
            if($data['calcposgrid'] == 'h'){
-               
+            $this->Fighters->moveH($fighter);
            }
            elseif($data['calcposgrid'] == 'g'){
-               
+            $this->Fighters->moveG($fighter);   
            }
            elseif($data['calcposgrid'] == 'd'){
-               
+            $this->Fighters->moveD($fighter);  
            }
            elseif($data['calcposgrid'] == 'b'){
-               
+            $this->Fighters->moveB($fighter);  
            }
            elseif($data['actfight'] == '1'){
                
            }
            
        }
-       
     }
     
     public function diary()

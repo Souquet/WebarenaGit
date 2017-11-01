@@ -27,6 +27,81 @@ class FightersTable extends Table {
         //gerer ce qu'il y a autour 
         //jeton de jeu ?
     }
+    //gauche
+    public function moveG($fighter){
+        $conditions = array('id' => $fighter);
+        if($this->exists($conditions)){
+            $temp = $this->find('all', array('conditions' => $conditions));
+            $f = $temp->first();
+            $y = $f['coordinate_y'] - 1;
+            $x = $f['coordinate_x'];
+            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+            if($this->exists($cond)){
+                return;
+            }
+            if($f['coordinate_y'] != 0){
+                $f['coordinate_y'] = $f['coordinate_y'] - 1;
+                $this->save($f);
+            }
+        }
+    }
+    
+    //droite
+    public function moveD($fighter){
+        $conditions = array('id' => $fighter);
+        if($this->exists($conditions)){
+            $temp = $this->find('all', array('conditions' => $conditions));
+            $f = $temp->first();
+            $y = $f['coordinate_y'] + 1;
+            $x = $f['coordinate_x'];
+            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+            if($this->exists($cond)){
+                return;
+            }
+            if($f['coordinate_y'] != 14){
+                $f['coordinate_y'] = $f['coordinate_y'] + 1;
+                $this->save($f);
+            }
+        }
+    }
+    
+    //haut
+    public function moveH($fighter){
+        $conditions = array('id' => $fighter);
+        if($this->exists($conditions)){
+            $temp = $this->find('all', array('conditions' => $conditions));
+            $f = $temp->first();
+            $y = $f['coordinate_y'];
+            $x = $f['coordinate_x'] - 1;
+            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+            if($this->exists($cond)){
+                return;
+            }
+            if($f['coordinate_y'] != 0){
+                $f['coordinate_x'] = $f['coordinate_x'] - 1;
+                $this->save($f);
+            }
+        }
+    }
+    
+    //bas
+    public function moveB($fighter){
+        $conditions = array('id' => $fighter);
+        if($this->exists($conditions)){
+            $temp = $this->find('all', array('conditions' => $conditions));
+            $f = $temp->first();
+            $y = $f['coordinate_y'];
+            $x = $f['coordinate_x'] + 1;
+            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+            if($this->exists($cond)){
+                return;
+            }
+            if($f['coordinate_y'] != 0){
+                $f['coordinate_x'] = $f['coordinate_x'] + 1;
+                $this->save($f);
+            }
+        }
+    }
     
     //Change les valeurs en fonction de la caracteristique choi        
     public function levelUp($fighterId,$carac){

@@ -24,13 +24,20 @@ class ArenasController  extends AppController{
         $id = $this->Auth->user('id');
         if ($this->request->is('post')) {
             $data = $this->request->getData();
-            $new_fighter_name = $data['new_name'];
+            $new_fighter_name = $data['name'];
             $new_avatar_img = $data['avatar'];
-            if (($new_fighter_name != '')&&($new_avatar_img == 1 || $new_avatar_img == 2)){
-                $this->Fighters->addFighter($new_fighter_name,$id);
+            if (!empty($data['avatar']['name']) && !empty($data['name'])){
+                $this->loadModel('Surroundings');
+                $query=$this->Surroundings->find("all",array( 'fields'=> array('coordinate_x','coordinate_y')))->toArray();
+                $this->loadModel('Fighters');
+                $this->Fighters->addFighter($new_fighter_name,$id,$query);
+                $av=$data['avatar'];
+                $extension = substr(strtolower(strrchr($av['name'], '.')), 1);
+                $fichier = "comb_".$id;
+                move_uploaded_file($av['tmp_name'], WWW_ROOT . '/img/' . $fichier.'.jpg');
                 return $this->redirect('/Arenas/fighter');
             }else{
-                $fail='nom incorrect';
+                $fail='nom incorrect ou avatar manquant';
                 $this->set('fail',$fail);
             }
         }

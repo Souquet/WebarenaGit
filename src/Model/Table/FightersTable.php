@@ -23,108 +23,126 @@ class FightersTable extends Table {
         $this->save($a);
     }
     
-    public function move($idFighter,$idDirection){
+   //public function move($idFighter,$idDirection){
         //gerer ce qu'il y a autour 
         //jeton de jeu ?
-    }
+   // }
+
+    // public function move($dir, $fighter){
+    //     switch($dir){
+    //         case "g": $this->moveG($fighter);
+    //             break;
+    //         case "d": $this->moveH($fighter);
+    //             break;
+    //         case "b": $this->moveB($fighter);
+    //             break;
+    //         case "h": $this->moveD($fighter);
+    //             break;
+    //         default: break;
+    //     }
+    // }
+    
     //gauche
-    public function moveG($fighter){
-        $conditions = array('id' => $fighter);
-        if($this->exists($conditions)){
-            $temp = $this->find('all', array('conditions' => $conditions));
-            $f = $temp->first();
-            $y = $f['coordinate_y'] - 1;
-            $x = $f['coordinate_x'];
-            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-            if($this->exists($cond)){
-                return;
-            }
-            if($f['coordinate_y'] != 0){
-                $f['coordinate_y'] = $f['coordinate_y'] - 1;
-                $this->save($f);
-            }
-        }
-    }
+    // public function moveG($fighter){
+    //     $conditions = array('id' => $fighter);
+    //     if($this->exists($conditions)){
+    //         $temp = $this->find('all', array('conditions' => $conditions));
+    //         $f = $temp->first();
+    //         $y = $f['coordinate_y'] - 1;
+    //         $x = $f['coordinate_x'];
+    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+    //         if($this->exists($cond)){
+    //             return;
+    //         }
+    //         if($f['coordinate_y'] != 0){
+    //             $f['coordinate_y'] = $f['coordinate_y'] - 1;
+    //             $this->save($f);
+    //         }
+    //     }
+    // }
     
-    //droite
-    public function moveD($fighter){
-        $conditions = array('id' => $fighter);
-        if($this->exists($conditions)){
-            $temp = $this->find('all', array('conditions' => $conditions));
-            $f = $temp->first();
-            $y = $f['coordinate_y'] + 1;
-            $x = $f['coordinate_x'];
-            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-            if($this->exists($cond)){
-                return;
-            }
-            if($f['coordinate_y'] != 14){
-                $f['coordinate_y'] = $f['coordinate_y'] + 1;
-                $this->save($f);
-            }
-        }
-    }
+    // //droite
+    // public function moveD($fighter){
+    //     $conditions = array('id' => $fighter);
+    //     if($this->exists($conditions)){
+    //         $temp = $this->find('all', array('conditions' => $conditions));
+    //         $f = $temp->first();
+    //         $y = $f['coordinate_y'] + 1;
+    //         $x = $f['coordinate_x'];
+    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+    //         if($this->exists($cond)){
+    //             return;
+    //         }
+    //         if($f['coordinate_y'] != 14){
+    //             $f['coordinate_y'] = $f['coordinate_y'] + 1;
+    //             $this->save($f);
+    //         }
+    //     }
+    // }
     
-    //haut
-    public function moveH($fighter){
-        $conditions = array('id' => $fighter);
-        if($this->exists($conditions)){
-            $temp = $this->find('all', array('conditions' => $conditions));
-            $f = $temp->first();
-            $y = $f['coordinate_y'];
-            $x = $f['coordinate_x'] - 1;
-            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-            if($this->exists($cond)){
-                return;
-            }
-            if($f['coordinate_y'] != 0){
-                $f['coordinate_x'] = $f['coordinate_x'] - 1;
-                $this->save($f);
-            }
-        }
-    }
+    // //haut
+    // public function moveH($fighter){
+    //     $conditions = array('id' => $fighter);
+    //     if($this->exists($conditions)){
+    //         $temp = $this->find('all', array('conditions' => $conditions));
+    //         $f = $temp->first();
+    //         $y = $f['coordinate_y'];
+    //         $x = $f['coordinate_x'] - 1;
+    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+    //         if($this->exists($cond)){
+    //             return;
+    //         }
+    //         if($f['coordinate_y'] != 0){
+    //             $f['coordinate_x'] = $f['coordinate_x'] - 1;
+    //             $this->save($f);
+    //         }
+    //     }
+    // }
     
-    //bas
-    public function moveB($fighter){
-        $conditions = array('id' => $fighter);
-        if($this->exists($conditions)){
-            $temp = $this->find('all', array('conditions' => $conditions));
-            $f = $temp->first();
-            $y = $f['coordinate_y'];
-            $x = $f['coordinate_x'] + 1;
-            $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-            if($this->exists($cond)){
-                return;
-            }
-            if($f['coordinate_y'] != 0){
-                $f['coordinate_x'] = $f['coordinate_x'] + 1;
-                $this->save($f);
-            }
-        }
+    // //bas
+    // public function moveB($fighter){
+    //     $conditions = array('id' => $fighter);
+    //     if($this->exists($conditions)){
+    //         $temp = $this->find('all', array('conditions' => $conditions));
+    //         $f = $temp->first();
+    //         $y = $f['coordinate_y'];
+    //         $x = $f['coordinate_x'] + 1;
+    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
+    //         if($this->exists($cond)){
+    //             return;
+    //         }
+    //         if($f['coordinate_y'] != 0){
+    //             $f['coordinate_x'] = $f['coordinate_x'] + 1;
+    //             $this->save($f);
+    //         }
+    //     }
+    // }
+
+    public function moveB(){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get(2);
+        $fighters->coordinate_y+=1;
+        $FightersTable->save($fighters);
     }
-    
-    //Change les valeurs en fonction de la caracteristique choi        
-    public function levelUp($fighterId,$carac){
-        $fighter=$this->get($fighterId);
-        switch($carac){
-                case 1: //sight
-                    $fighter->skill_sight+=1;
-                    $fighter->level+=1;
-                    break;
-                case 2: //strength
-                    $fighter->skill_strength+=1;
-                    $fighter->level+=1;
-                    break;
-                case 3: //hp's
-                    $fighter->skill_health+=3;
-                    $fighter->current_health=skill_health;
-                    $fighter->level+=1;
-                    break;
-                default:
-                    break;
-        }
-        $this->save($fighter);
+    public function moveH(){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get(2);
+        $fighters->coordinate_y-=1;
+        $FightersTable->save($fighters);
     }
+    public function moveG(){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get(2);
+        $fighters->coordinate_x-=1;
+        $FightersTable->save($fighters);
+    }
+    public function moveD(){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get(2);
+        $fighters->coordinate_x+=1;
+        $FightersTable->save($fighters);
+    }
+
             
     
     //fonction qui créer un nouveau figther (avec placement aléatoire libre)

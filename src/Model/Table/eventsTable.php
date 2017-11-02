@@ -44,11 +44,12 @@ class eventsTable extends Table
     }
     */
     
-    public function getevents(){
+   public function getevents(){
         $now = Time::now();
         $all = $this->find('all', [
-            'order'=> ['events.date' =>'ASC']
-        ]);
+            'order'=> ['events.date' =>'ASC']], array(
+        'conditions' => array('events.date' => '-24 hours')
+        ));
         return $all;
         
     }   

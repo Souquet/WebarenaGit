@@ -51,7 +51,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
-    </footer>
 </body>
+<footer class="navbar navbar-default navbar-fixed-bottom">
+    <ul class="container-fluid list-inline text-center" >
+        <li class="col-lg-4">GROUPE : SI2</li> 
+        <li class="col-lg-4">DUARTE - SOUQUET - PETRIGNET - GIRARD</li>
+        <li class="col-lg-4">OPTION : D/F</li>
+    </ul>
+</footer>
 </html>

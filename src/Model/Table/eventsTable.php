@@ -4,7 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\I18n\Time;
 
-class eventsTable extends Table
+class EventsTable extends Table
 {
     /*public function move($dir, $id){
         $new = $this->newEntity();

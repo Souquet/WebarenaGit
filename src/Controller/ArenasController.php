@@ -102,9 +102,9 @@ class ArenasController  extends AppController{
 {
         //if ($this->request->session()->check('playerId')==NULL) //{$this->redirect(['events' => 'login']);}
         
-        $this->loadModel('events');
+        $this->loadModel('Events');
         
-        $this->set('events', $this->events->getevents());
+        $this->set('Events', $this->Events->getevents());
 }
     
     public function login(){

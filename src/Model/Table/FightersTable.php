@@ -23,8 +23,8 @@ class FightersTable extends Table {
         $a-> guild_id = $idGuild;
         $this->save($a);
     }
-
-   public function moveB($id){
+    
+    public function moveB($id){
         $FightersTable = TableRegistry::get('fighters');
         $fighters = $FightersTable->get($id);
             if($fighters->coordinate_y < 10){
@@ -76,7 +76,6 @@ class FightersTable extends Table {
         $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
         return $fighters;
     }
-
     public function attB($id){
         $FightersTable = TableRegistry::get('fighters');
         $fighters = $FightersTable->get($id);
@@ -117,11 +116,34 @@ class FightersTable extends Table {
         $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
         return $fighters;
     }
-
-
+    
+    //Change les valeurs en fonction de la caracteristique choi        
+    public function levelUp($fighterId,$carac){
+        $fighter=$this->get($fighterId);
+        switch($carac){
+                case 1: //sight
+                    $fighter->skill_sight+=1;
+                    $fighter->level+=1;
+                    break;
+                case 2: //strength
+                    $fighter->skill_strength+=1;
+                    $fighter->level+=1;
+                    break;
+                case 3: //hp's
+                    $fighter->skill_health+=3;
+                    $fighter->current_health=skill_health;
+                    $fighter->level+=1;
+                    break;
+                default:
+                    break;
+        }
+        $this->save($fighter);
+    }
+            
+    
     //fonction qui créer un nouveau figther (avec placement aléatoire libre)
     //player id a ajouté en parametre et en dessous
-    public function addFighter($new_fighter_name,$pid) { 
+    public function addFighter($new_fighter_name,$pid,$surrCoord) { 
         $a = $this->newEntity();
         $a->name = $new_fighter_name;
         $a->player_id = $pid;
@@ -133,24 +155,37 @@ class FightersTable extends Table {
         //boucle qui verrifie que l'emplacement est libre
         do{
             $loop=FALSE;
-            foreach ($listcoord as $bob) {
-                if ($bob == $coordinates) {
-                    $a->coordinate_x = rand(0,14);
-                    $a->coordinate_y = rand(0,9);
-                    $loop=TRUE;
+            do{
+                $loop1=FALSE;
+                foreach ($listcoord as $bob) {
+                    if ($bob == $coordinates) {
+                        $a->coordinate_x = rand(0,14);
+                        $a->coordinate_y = rand(0,9);
+                        $loop1=TRUE;
+                    }
                 }
-            }
+            }while ($loop1);
+            do{
+                $loop2=FALSE;
+                foreach ($surrCoord as $bob) {
+                    if ($bob == $coordinates) {
+                        $a->coordinate_x = rand(0,14);
+                        $a->coordinate_y = rand(0,9);
+                        $loop2=TRUE;
+                        $loop=TRUE;
+                    }
+                }
+            }while ($loop2);       
         }while ($loop);
-       
+        
         $a->level = 1;
-        $a->xp=8;
+        $a->xp=0;
         $a->skill_sight = 2;
         $a->skill_strength = 1;
         $a->skill_health = 5;
         $a->current_health = 5;
         $a->next_action_time = null;
         $a->guild_id= null;
-
         $this->save($a);
     }
 

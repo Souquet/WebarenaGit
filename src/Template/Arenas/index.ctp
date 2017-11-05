@@ -1,4 +1,3 @@
-
 <?php $this->assign('title', 'Index');?>
 
 <!DOCTYPE html>
@@ -19,7 +18,7 @@
     <section>
         
         <section class="col-lg-4 container-fluid">
-            <h3 class="text-center">Inscris-toi et connect-toi !</h3>
+            <h3 class="text-center">Inscris-toi et connecte-toi !</h3>
             <p>Inscris toi en fournissant seulement ton email et un mot de passe</p>
             <p>Ensuite, connecte-toi grâce à ceux-ci.</p>
         </section>
@@ -37,4 +36,3 @@
     </section>
 </body>
 </html>
-

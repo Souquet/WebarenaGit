@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
@@ -43,7 +42,7 @@ class ArenasController  extends AppController{
         }
     }
     
-    public function fighter() {
+     public function fighter() {
         $this->loadModel('Fighters');
         $id = $this->Auth->user('id');
         $bool = $this->Fighters->find("all")
@@ -120,14 +119,14 @@ class ArenasController  extends AppController{
        }
     }
     
-    public function diary()
-{
+    
+    public function diary(){
         //if ($this->request->session()->check('playerId')==NULL) //{$this->redirect(['events' => 'login']);}
         
         $this->loadModel('Events');
         
         $this->set('Events', $this->Events->getevents());
-}
+    }
     
     public function login(){
         $this->set('mdp', '');
@@ -151,6 +150,7 @@ class ArenasController  extends AppController{
                 $player = $this->Auth->identify();
                     if ($player){
                         $this->Auth->setUser($player);
+                        $id = $this->Auth->user('id');
                         return $this->redirect($this->Auth->redirectUrl());
                     }
                 $this->set('invalid','Email ou mot de passe incorrect !');

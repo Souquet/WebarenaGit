@@ -17,46 +17,58 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+<header>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <?php echo $this->Html->css('bootstrap.css');?>
+    <?php echo $this->Html->css('moncss.css');?>
+    
+    <nav class="navbar navbar-inverse">
+        
+            <ul class="nav navbar-nav container-fluid active">
+                <li><?php echo $this->Html->link('WebArena', array('controller' => 'Arenas', 'action' => '/')); ?></li>
+                <li><?php echo $this->Html->link('Fighter', array('controller' => 'Arenas', 'action' => 'fighter')); ?></li>
+                <li><?php echo $this->Html->link('Diary', array('controller' => 'Arenas', 'action' => 'diary')); ?></li>
+                <li><?php echo $this->Html->link('Sight', array('controller' => 'Arenas', 'action' => 'sight')); ?></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right container-fluid active">
+                <li><?php echo $this->Html->link('Logout', array('controller' => 'Arenas', 'action' => 'logout')); ?></li>
+                <li><?php echo $this->Html->link('Login', array('controller' => 'Arenas', 'action' => 'login')); ?></li>
+            </ul>
+
+    </nav>
+    
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
+    
     <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-</head>
+</header>
+    
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
+    <h1 class="text-center"><?= $this->fetch('title') ?></h1>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
 </body>
-<footer class="navbar navbar-default navbar-fixed-bottom">
-    <ul class="container-fluid list-inline text-center" >
-        <li class="col-lg-4">GROUPE : SI2</li> 
-        <li class="col-lg-4">DUARTE - SOUQUET - PETRIGNET - GIRARD</li>
-        <li class="col-lg-4">OPTION : D/F</li>
+<footer>
+    <ul>
+        <li class="col-lg-3 text-center list-group-item">GROUPE : SI2</li> 
+        <li class="col-lg-3 text-center list-group-item">DUARTE - SOUQUET - PETRIGNET - GIRARD</li>
+        <li class="col-lg-3 text-center list-group-item">OPTION : D/F</li>
+        <li class="col-lg-3 text-center list-group-item">SERVEUR : <a href="http://webarena.datahub.fr">Site en ligne</a></li>
     </ul>
 </footer>
 </html>

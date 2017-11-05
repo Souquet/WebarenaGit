@@ -1,4 +1,3 @@
-
 <?= $this->Html->css('arena.css') ?>
 
 <!DOCTYPE html>
@@ -11,11 +10,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
 
-    <body>
+<body class="container text-center">
 
 
-<section class="cadre">
-        <table >
+<section class="col-lg-12">
+        <table>
             <?php 
             use Cake\ORM\Table;
             use Cake\ORM\TableRegistry;
@@ -48,14 +47,14 @@
         </table>
 </section>
 
-<section class="ControlsArea">
-    <section class="Actions">
+<section class="col-lg-12">
+    <section class="col-lg-6 text-center">
         <table>
             <tr>
                 <td></td>
                 <td><?php echo $this->Form->create('haut');?>
                     <?php echo $this->Form->hidden('action',['value'=>'ah']);?>
-                    <?php echo $this->Form->button('Attaque HAUT');?>
+                    <?php echo $this->Form->button('Attaque HAUT', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?>
                 </td>
                 <td></td>
@@ -63,32 +62,32 @@
             <tr>
                 <td><?php echo $this->Form->create('gauche');?>
                     <?php echo $this->Form->hidden('action',['value'=>'ag']);?>
-                    <?php echo $this->Form->button('Attaque GAUCHE');?>
+                    <?php echo $this->Form->button('Attaque GAUCHE', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?></td>
                 <td></td>
                 <td><?php echo $this->Form->create('groite');?>
                     <?php echo $this->Form->hidden('action',['value'=>'ad']);?>
-                    <?php echo $this->Form->button('Attaque DROITE');?>
+                    <?php echo $this->Form->button('Attaque DROITE', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?></td>
             </tr>
             <tr>
                 <td></td>
                 <td><?php echo $this->Form->create('bas');?>
                     <?php echo $this->Form->hidden('action',['value'=>'ab']);?>
-                    <?php echo $this->Form->button('Attaque BAS');?>
+                    <?php echo $this->Form->button('Attaque BAS', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?></td>
                 <td></td>
             </tr>
         </table>
     </section>
     
-    <section class="Directions">
+    <section class="col-lg-6 text-center">
         <table >
             <tr>
                 <td></td>
                 <td><?php echo $this->Form->create('haut');?>
                     <?php echo $this->Form->hidden('action',['value'=>'dh']);?>
-                    <?php echo $this->Form->button('Aller HAUT');?>
+                    <?php echo $this->Form->button('Aller HAUT', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?>
                 </td>
                 <td></td>
@@ -96,19 +95,19 @@
             <tr>
                 <td><?php echo $this->Form->create('gauche');?>
                     <?php echo $this->Form->hidden('action',['value'=>'dg']);?>
-                    <?php echo $this->Form->button('Aller GAUCHE');?>
+                    <?php echo $this->Form->button('Aller GAUCHE', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?></td>
                 <td></td>
                 <td><?php echo $this->Form->create('groite');?>
                     <?php echo $this->Form->hidden('action',['value'=>'dd']);?>
-                    <?php echo $this->Form->button('Aller DROITE');?>
+                    <?php echo $this->Form->button('Aller DROITE', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?></td>
             </tr>
             <tr>
                 <td></td>
                 <td><?php echo $this->Form->create('bas');?>
                     <?php echo $this->Form->hidden('action',['value'=>'db']);?>
-                    <?php echo $this->Form->button('Aller BAS');?>
+                    <?php echo $this->Form->button('Aller BAS', ['class'=>'btn btn-danger']);?>
                     <?php echo $this->Form->end();?></td>
                 <td></td>
             </tr>

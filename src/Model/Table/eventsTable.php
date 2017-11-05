@@ -43,6 +43,17 @@ class EventsTable extends Table
         $this->save($new);
     }
     */
+     var $gmt = 1;
+    public function addEvent($eventName, $coordinate_x, $coordinate_y) {
+        $query = $this->query();
+        $query->insert(['name', 'date', 'coordinate_x', 'coordinate_y'])
+                ->values(['name' => $eventName,
+                    'date' => Time::now()->addHour($this->gmt),
+                    'coordinate_x' => $coordinate_x,
+                    'coordinate_y' => $coordinate_y]
+                )
+                ->execute();
+    }
     
    public function getevents(){
         $now = Time::now();

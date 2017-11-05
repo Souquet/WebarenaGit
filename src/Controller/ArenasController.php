@@ -74,27 +74,49 @@ class ArenasController  extends AppController{
     }
     
     public function sight(){
-        if ($this->request->is('post')){
+        $playerId = $this->request->session()->read('player.id');
+        //if (!$playerId) {
+        //    $this->redirect(array('controller' => 'Arenas', 'action' => 'login'));
+        //} else {
+       if ($this->request->is('post')){
            // déclaration variables
            $data = $this->request->getData();
            $this->LoadModel('Fighters');
+           $this->loadModel('Surroundings');
+
+
+           //$FightersTable = TableRegistry::get('fighters');
+           //$fighters = $FightersTable->get(2);
+
+           $fighter = $this->request->session()->read('fighter.current');
+           $this->set('fighter', $fighter);
+           $idFighter = 2; // a globaliser avec la session en cours
+
            
-           if($data['calcposgrid'] == 'h'){
-            $this->Fighters->moveH();
+           if($data['action'] == 'dh'){
+            $this->Fighters->moveH($idFighter);
            }
-           elseif($data['calcposgrid'] == 'g'){
-            $this->Fighters->moveG();   
+           elseif($data['action'] == 'dg'){
+            $this->Fighters->moveG($idFighter);   
            }
-           elseif($data['calcposgrid'] == 'd'){
-            $this->Fighters->moveD();  
+           elseif($data['action'] == 'dd'){
+            $this->Fighters->moveD($idFighter);  
            }
-           elseif($data['calcposgrid'] == 'b'){
-            $this->Fighters->moveB();  
+           elseif($data['action'] == 'db'){
+            $this->Fighters->moveB($idFighter);  
            }
-           elseif($data['actfight'] == '1'){
-            $this->Fighters->att('1');
+           elseif($data['action'] == 'ah'){
+            $this->Fighters->attH($idFighter);
            }
-           
+           elseif($data['action'] == 'ag'){
+            $this->Fighters->attG($idFighter);
+           }
+           elseif($data['action'] == 'ad'){
+            $this->Fighters->attD($idFighter);
+           }
+           elseif($data['action'] == 'ab'){
+            $this->Fighters->attB($idFighter);
+           }
        }
     }
     

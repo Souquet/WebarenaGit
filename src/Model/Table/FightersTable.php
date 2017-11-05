@@ -3,6 +3,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 
 class FightersTable extends Table {
 
@@ -22,129 +23,102 @@ class FightersTable extends Table {
         $a-> guild_id = $idGuild;
         $this->save($a);
     }
-    
-   //public function move($idFighter,$idDirection){
-        //gerer ce qu'il y a autour 
-        //jeton de jeu ?
-   // }
 
-    // public function move($dir, $fighter){
-    //     switch($dir){
-    //         case "g": $this->moveG($fighter);
-    //             break;
-    //         case "d": $this->moveH($fighter);
-    //             break;
-    //         case "b": $this->moveB($fighter);
-    //             break;
-    //         case "h": $this->moveD($fighter);
-    //             break;
-    //         default: break;
-    //     }
-    // }
-    
-    //gauche
-    // public function moveG($fighter){
-    //     $conditions = array('id' => $fighter);
-    //     if($this->exists($conditions)){
-    //         $temp = $this->find('all', array('conditions' => $conditions));
-    //         $f = $temp->first();
-    //         $y = $f['coordinate_y'] - 1;
-    //         $x = $f['coordinate_x'];
-    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-    //         if($this->exists($cond)){
-    //             return;
-    //         }
-    //         if($f['coordinate_y'] != 0){
-    //             $f['coordinate_y'] = $f['coordinate_y'] - 1;
-    //             $this->save($f);
-    //         }
-    //     }
-    // }
-    
-    // //droite
-    // public function moveD($fighter){
-    //     $conditions = array('id' => $fighter);
-    //     if($this->exists($conditions)){
-    //         $temp = $this->find('all', array('conditions' => $conditions));
-    //         $f = $temp->first();
-    //         $y = $f['coordinate_y'] + 1;
-    //         $x = $f['coordinate_x'];
-    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-    //         if($this->exists($cond)){
-    //             return;
-    //         }
-    //         if($f['coordinate_y'] != 14){
-    //             $f['coordinate_y'] = $f['coordinate_y'] + 1;
-    //             $this->save($f);
-    //         }
-    //     }
-    // }
-    
-    // //haut
-    // public function moveH($fighter){
-    //     $conditions = array('id' => $fighter);
-    //     if($this->exists($conditions)){
-    //         $temp = $this->find('all', array('conditions' => $conditions));
-    //         $f = $temp->first();
-    //         $y = $f['coordinate_y'];
-    //         $x = $f['coordinate_x'] - 1;
-    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-    //         if($this->exists($cond)){
-    //             return;
-    //         }
-    //         if($f['coordinate_y'] != 0){
-    //             $f['coordinate_x'] = $f['coordinate_x'] - 1;
-    //             $this->save($f);
-    //         }
-    //     }
-    // }
-    
-    // //bas
-    // public function moveB($fighter){
-    //     $conditions = array('id' => $fighter);
-    //     if($this->exists($conditions)){
-    //         $temp = $this->find('all', array('conditions' => $conditions));
-    //         $f = $temp->first();
-    //         $y = $f['coordinate_y'];
-    //         $x = $f['coordinate_x'] + 1;
-    //         $cond = array('coordinate_x' => $x, 'coordinate_y' => $y);
-    //         if($this->exists($cond)){
-    //             return;
-    //         }
-    //         if($f['coordinate_y'] != 0){
-    //             $f['coordinate_x'] = $f['coordinate_x'] + 1;
-    //             $this->save($f);
-    //         }
-    //     }
-    // }
-
-    public function moveB(){
+   public function moveB($id){
         $FightersTable = TableRegistry::get('fighters');
-        $fighters = $FightersTable->get(2);
-        $fighters->coordinate_y+=1;
+        $fighters = $FightersTable->get($id);
+            if($fighters->coordinate_y < 10){
+            $fighters->coordinate_y+=1;
+            }
+            else{}
         $FightersTable->save($fighters);
+        $eventName ='Deplacement Bas';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
     }
-    public function moveH(){
+    public function moveH($id){
         $FightersTable = TableRegistry::get('fighters');
-        $fighters = $FightersTable->get(2);
-        $fighters->coordinate_y-=1;
+        $fighters = $FightersTable->get($id);
+            if($fighters->coordinate_y > 1){
+            $fighters->coordinate_y-=1;
+            }
+            else{}
         $FightersTable->save($fighters);
+        $eventName ='Deplacement Haut';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
     }
-    public function moveG(){
+    public function moveG($id){
         $FightersTable = TableRegistry::get('fighters');
-        $fighters = $FightersTable->get(2);
-        $fighters->coordinate_x-=1;
+        $fighters = $FightersTable->get($id);
+            if($fighters->coordinate_x > 1){
+            $fighters->coordinate_x-=1;
+            }
+            else{}
         $FightersTable->save($fighters);
+        $eventName ='Deplacement Gauche';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
     }
-    public function moveD(){
+    public function moveD($id){
         $FightersTable = TableRegistry::get('fighters');
-        $fighters = $FightersTable->get(2);
-        $fighters->coordinate_x+=1;
+        $fighters = $FightersTable->get($id);
+            if($fighters->coordinate_x < 15){
+            $fighters->coordinate_x+=1;
+            }
+            else{}
         $FightersTable->save($fighters);
+        $eventName ='Deplacement Droite';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
     }
 
-            
-    
+    public function attB($id){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get($id);
+        $this->Surroundings = TableRegistry::get('Surroundings');
+        $this->Surroundings->attaque($fighters->coordinate_x, $fighters->coordinate_y, $id);
+        $eventName ='Attaque Bas !';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
+    }
+    public function attH($id){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get($id);
+        $this->Surroundings = TableRegistry::get('Surroundings');
+        $this->Surroundings->attaque($fighters->coordinate_x, $fighters->coordinate_y, $id);
+        $eventName ='Attaque Haut !';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
+    }
+    public function attG($id){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get($id);
+        $this->Surroundings = TableRegistry::get('Surroundings');
+        $this->Surroundings->attaque($fighters->coordinate_x, $fighters->coordinate_y, $id);
+        $eventName ='Attaque Gauche !';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
+    }
+    public function attD($id){
+        $FightersTable = TableRegistry::get('fighters');
+        $fighters = $FightersTable->get($id);
+        $this->Surroundings = TableRegistry::get('Surroundings');
+        $this->Surroundings->attaque($fighters->coordinate_x, $fighters->coordinate_y, $id);
+        $eventName ='Attaque Droite !';
+        $this->Events = TableRegistry::get('Events');
+        $this->Events->addEvent($eventName, $fighters->coordinate_x, $fighters->coordinate_y);
+        return $fighters;
+    }
+
+
     //fonction qui créer un nouveau figther (avec placement aléatoire libre)
     //player id a ajouté en parametre et en dessous
     public function addFighter($new_fighter_name,$pid) { 
